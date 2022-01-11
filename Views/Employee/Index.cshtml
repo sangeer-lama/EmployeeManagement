@@ -1,0 +1,55 @@
+@model List<Person>
+@{
+
+  ViewData["Title"] = "Employee Home";
+}
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Department Name</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    @for (int i = 0; i < Model.Count; i++)
+
+    {
+      <tr>
+        <td>@(i+1)</td>
+        <td>
+          @{
+
+            string fn = Model[i].FirstName;
+          }
+          <a href="/employee/detail?id=@Model[i].Id">@fn</a>
+        </td>
+        <td>@Model[i].Surname</td>
+        <td>@Model[i].Address</td>
+        <td>@Model[i].Gender</td>
+        <td>@Model[i].Salary</td>
+        <td>@Model[i].Department.Name</td>
+
+
+        <td>
+          <a class="btn btn-warning" href="/Employee/Edit?id=@Model[i].Id">Edit</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" href="/Employee/Delete?id=@Model[i].Id">Delete</a>
+        </td>
+        
+
+      </tr>
+
+    }
+  </tbody>
+</table>
